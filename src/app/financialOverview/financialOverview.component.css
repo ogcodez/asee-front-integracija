@@ -1,0 +1,177 @@
+.fOverview {
+    padding: 30px;
+}
+
+.main-card {
+    width: 60vw;
+    margin: auto;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.header {
+    height: 200px;
+    background-image: url(https://theme.zdassets.com/theme_assets/1875401/1afdd0a5ce33be95381b6718972fc846b88ccf05.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.avatar {
+    height: 120px;
+    width: 120px;
+    object-fit: contain;
+    border-radius: 60px;
+    margin-right: 20px;
+}
+
+.avatar-text {
+    color: #464646;
+    margin-right: auto;
+    text-align: left;
+    margin-top: 25px;
+}
+
+.text1 {
+    margin-bottom: 0;
+    font-size: 26px;
+}
+
+.text2 {
+    font-size: 18px;
+}
+
+.header-balance {
+    color: #464646;
+    margin-right: 20px;
+    margin-top: 25px;
+}
+
+.transaction0 {
+    height: 140px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+    background-color: #B2E5FF;
+}
+
+.transaction1 {
+    height: 140px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.transaction-avatar {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 30px;
+    margin: 10px 20px;
+    border: 2px solid #77C3EC;
+
+}
+
+.transaction-name {
+    font-size: 18px;
+    margin-bottom: -10px;
+}
+
+.transaction-date {
+    font-size: 14px;
+    margin-top: 0px;
+    margin-left: 1px;
+    font-weight: lighter;
+}
+
+.transaction-balance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.transaction-amount {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.transaction-text {
+    color: #464646;
+    margin-right: 40px;
+    text-align: left;
+    margin-top: 25px;
+}
+
+.arrow {
+    width: auto;
+    height: 20px;
+    margin-left: 20px;
+}
+
+.split {
+    height: 35px !important;
+    margin-right: 50px;
+    background-color: #77C3EC;
+}
+
+.category {
+    margin-right: auto;
+    background-color: #46464698 !important;
+    color: white !important;
+    min-width: 140px !important;
+    height: 35px !important;
+    border-radius: 10px;
+}
+
+.card-navigation {
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 20px;
+    height: 50px;
+}
+
+.chips {
+    margin-right: auto;
+}
+
+.chip {
+    background-color: #B2E5FF !important;
+}
+
+.sort {
+    font-size: 20px;
+    margin: 0px 20px;
+}
+
+.sort-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.chip1 {
+    background-color: #B2E5FF !important;
+    margin-left: 10px;
+}
+
+.card-nav-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.split-menu-button{
+    font-size: 20px;
+    font-weight: 400;
+    margin: 10px 20px;
+}

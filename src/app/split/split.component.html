@@ -1,0 +1,39 @@
+<div class="dialog">
+  <div class="dialog-header"> Choose Category </div>
+  <form class="form"  *ngFor="let split of splits let i = index">
+    <mat-form-field class="form-field" [formGroup]="splitForms[i]">
+      <mat-label>Select a Category</mat-label>
+      <mat-select [(value)]="split.chosenCategory" formControlName="chosenCategory"  (selectionChange)="onCategorySelected(split)">
+        <mat-option [value]="undefined">None</mat-option>
+        <mat-option *ngFor="let cat of mainCategory" [value]="cat">{{cat.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Select a Subcategory</mat-label>
+      <mat-select [(value)]="split.chosenSubCategory" [disabled]="!split.chosenCategory || split.chosenCategory.name === ''">
+        <mat-option *ngFor="let subcat of split.subCategory" [value]="subcat">{{subcat.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field" [formGroup]="splitForms[i]">
+      <mat-label>Amount</mat-label>
+      <input matInput [(ngModel)]="split.amount" formControlName="amount" name="amount">
+      <mat-icon matSuffix>payments</mat-icon>
+    </mat-form-field>
+    <div class="split-text" *ngIf="i + 1 === splits.length">
+      Add category
+      <button mat-icon-button color="accent" (click)="addSplit()">
+        <mat-icon class="add">add</mat-icon>
+      </button>
+    </div>
+    <div class="split-text" *ngIf="i < splits.length - 1 && splits.length > 2">
+      Remove category
+      <button mat-icon-button color="accent" (click)="removeSplit()">
+        <mat-icon class="add">remove</mat-icon>
+      </button>
+    </div>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button (click)="onSubmit()" [disabled]="validateForm()">Submit</button>
+  </div>
+</div>

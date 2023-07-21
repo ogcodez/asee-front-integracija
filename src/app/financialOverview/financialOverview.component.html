@@ -1,0 +1,81 @@
+<div class="fOverview">
+    <mat-card class="main-card">
+        <mat-card-header class="header">
+            <img class="avatar"
+                src="https://images.ctfassets.net/lh3zuq09vnm2/yBDals8aU8RWtb0xLnPkI/19b391bda8f43e16e64d40b55561e5cd/How_tracking_user_behavior_on_your_website_can_improve_customer_experience.png" />
+            <div class="avatar-text">
+                <h1 class="text1">Current Account</h1>
+                <h2 class="text2">0123456789</h2>
+            </div>
+            <div class="header-balance">
+                <h1 class="text1">123,456.78 $</h1>
+                <h2 class="text2">Available balance</h2>
+            </div>
+        </mat-card-header>
+        <mat-card appearance="outlined" class="card-navigation">
+            <mat-card-content class="card-nav-content">
+                <mat-chip-listbox class="chips">
+                    <mat-chip-option selected (click)="all()" class="chip">All</mat-chip-option>
+                    <mat-chip-option class="chip" (click)="incoming()">Incoming</mat-chip-option>
+                    <mat-chip-option class="chip" (click)="outgoing()">Outgoing</mat-chip-option>
+                </mat-chip-listbox>
+                <div class="sort-div">
+                    <button mat-mini-fab class="chip1" (click)="showCheckbox()">
+                        <mat-icon>library_add_check</mat-icon>
+                    </button>
+                    <div class="sort">Sort: </div>
+                    <button mat-mini-fab class="chip1" (click)="sortDate()">
+                        <mat-icon>calendar_today</mat-icon>
+                    </button>
+                    <button mat-mini-fab class="chip1" (click)="sortCategory()">
+                        <mat-icon>category</mat-icon>
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card-content>
+            <cdk-accordion>
+                <cdk-accordion-item *ngFor="let tran of visableTransactions; let i = index;"
+                    #accordionItem="cdkAccordionItem" role="button" tabindex="0" [attr.id]="'accordion-header-' + i"
+                    [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + i">
+                    <mat-card class="transaction{{i%2}}" (click)="accordionItem.toggle()">
+                        <mat-checkbox class="checkbox" *ngIf="multiple" (click)="select(tran)"
+                            [(ngModel)]="tran.checked"></mat-checkbox>
+                        <img *ngIf="tran.direction === 'c'; else elseBlock" src="../../assets/green.png"
+                            class="arrow" />
+                        <ng-template #elseBlock>
+                            <img src="../../assets/red.png" class="arrow" />
+                        </ng-template>
+                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+                            class="transaction-avatar" />
+                        <div class="transaction-text">
+                            <h1 class="transaction-name">{{tran.beneficiaryName}}</h1>
+                            <h2 class="transaction-date">{{tran.date}}</h2>
+                        </div>
+                        <button mat-flat-button class="category"
+                            (click)="changeCategory(multipleTransactions.size === 0 ? tran : multipleTransactions)">{{
+                            getCategory(tran.catcode) }}</button>
+                        <div class="transaction-balance">
+                            <h1 class="transaction-amount">{{tran.amount.replace('€','')
+                                + "
+                                " +
+                                tran.currency}} </h1>
+                            <button mat-fab extended class="split" (click)="split(tran)">
+                                Split Transaction
+                            </button>
+                        </div>
+                    </mat-card>
+
+                    <div role="region"
+                        [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + i"
+                        [attr.aria-labelledby]="'accordion-header-' + i" *ngIf="tran.split.length >= 2">
+                        <mat-card *ngFor="let sp of tran.split; let ind = index" class="transaction{{i%2}}">
+                            <mat-card-content>{{ind + ". Split ---" + sp.amount + " " +
+                                tran.currency + ' -- ' + getCategory(sp.catcode.toString())}}</mat-card-content>
+                        </mat-card>
+                    </div>
+                </cdk-accordion-item>
+            </cdk-accordion>
+        </mat-card-content>
+    </mat-card>
+</div>
