@@ -3,14 +3,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FinancialService } from '../financial.service';
 import camelcaseKeys from 'camelcase-keys';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-
-export interface Category {
-  code: string;
-  parentCode: string;
-  name: string;
-}
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Category } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-split',

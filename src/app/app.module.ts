@@ -22,6 +22,11 @@ import { SplitComponent } from './split/split.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { NavigationComponent } from './navigation/navigation.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { SpendingComponent } from './spending/spending.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 
 
@@ -31,6 +36,8 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
     FinancialOverviewComponent,
     DialogComponent,
     SplitComponent,
+    NavigationComponent,
+    SpendingComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,10 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
     MatCheckboxModule,
     MatMenuModule,
     MatSnackBarModule,
-    CdkAccordionModule
+    CdkAccordionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgApexchartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FinancialService } from '../financial.service';
 import camelcaseKeys from 'camelcase-keys';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SplitComponent } from '../split/split.component';
-import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
+import { MatExpansionPanel } from '@angular/material/expansion';
+import { Subscription } from 'rxjs';
 
 
 
@@ -15,11 +16,12 @@ import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansi
   viewProviders: [MatExpansionPanel]
 })
 export class FinancialOverviewComponent implements OnInit {
-  public transactions: any;
   public visableTransactions: any;
   public multiple = false;
   public categories: any;
   public multipleTransactions = new Set();
+  public dateChange = false;
+
 
   constructor(
     private fService: FinancialService,
@@ -28,49 +30,52 @@ export class FinancialOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch();
+    this.fService.getDateChange().subscribe(() => {
+      this.visableTransactions = this.fService.getVisableTransactions();
+    });
   }
+
 
   // Fetch all transactions(add a property CHECKED, CATCODE and SPLIT), categories
   public fetch() {
-    this.fService.getTransactions().subscribe((object) => {
-      this.transactions = camelcaseKeys(object.items.map((obj: any) => ({
-        ...obj,
-        checked: false,
-        catcode: '',
-        splitBol: false,
-        split: [{
-          amount: '',
-          catcode: ''
-        }]
-      })));
-      this.fService.updateTransactionData(this.transactions);
-      this.visableTransactions = this.fService.getTransactionData();
-    });
     this.fService.getCategories().subscribe((data) => {
+      this.visableTransactions = this.fService.getVisableTransactions();
       this.categories = camelcaseKeys(data.items);
     })
   }
 
-  open(){
-
-  }
-
   // Show all transactions
   public all() {
-    this.visableTransactions = this.transactions;
+    if (this.fService.getFromDate()?.getTime() != undefined && this.fService.getToDate()?.getTime() != undefined) {
+      this.visableTransactions = this.fService.getVisableTransactions().filter((obj: any) => {
+        return new Date(obj.date).getTime() >= this.fService.getFromDate()!.getTime() && new Date(obj.date).getTime() <= this.fService.getToDate()!.getTime();
+      });
+    } else {
+      this.visableTransactions = this.fService.getVisableTransactions();
+    }
+    
   }
 
   // Show deposit transactions
   public incoming() {
-    this.visableTransactions = this.transactions.filter((obj: any) => {
-      return obj.kind === "dep";
+    this.visableTransactions = this.fService.getVisableTransactions().filter((obj: any) => {
+      if (this.fService.getFromDate()?.getTime() != undefined && this.fService.getToDate()?.getTime() != undefined) {
+        return obj.kind === "dep" && new Date(obj.date).getTime() >= this.fService.getFromDate()!.getTime() && new Date(obj.date).getTime() <= this.fService.getToDate()!.getTime();
+      }
+      else {
+        return obj.kind === "dep"
+      }
     });
   }
 
   // Show payment transactions
   public outgoing() {
-    this.visableTransactions = this.transactions.filter((obj: any) => {
-      return obj.kind === "pmt";
+    this.visableTransactions = this.fService.getVisableTransactions().filter((obj: any) => {
+      if (this.fService.getFromDate()?.getTime() != undefined && this.fService.getToDate()?.getTime() != undefined) {
+        return obj.kind === "pmt" && new Date(obj.date).getTime() >= this.fService.getFromDate()!.getTime() && new Date(obj.date).getTime() <= this.fService.getToDate()!.getTime();
+      } else {
+        return obj.kind === "pmt"
+      }
     });
   }
 

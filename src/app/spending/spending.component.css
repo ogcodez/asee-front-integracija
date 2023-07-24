@@ -15,11 +15,15 @@
 
 .main-card {
     width: 100%;
-    margin: auto;
     border-radius: 20px;
     background-color: #fff;
 }
-
+.subcat{
+    background-color: #B2E5FF;
+    border-radius: 20px;
+    width: 100%;
+    
+}
 .header {
     height: 200px;
     background-image: url(https://theme.zdassets.com/theme_assets/1875401/1afdd0a5ce33be95381b6718972fc846b88ccf05.png);
@@ -62,17 +66,14 @@
     margin-top: 25px;
 }
 
-.transaction0 {
-    height: 140px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 5px;
-    background-color: #B2E5FF;
+.cat-name{
+    color: #464646;
+    margin-right: auto;
+    font-size: 18px;
+    margin-top: 10px;
 }
 
-.transaction1 {
+.transaction {
     height: 140px;
     display: flex;
     flex-direction: row;
@@ -117,7 +118,7 @@
 
 .transaction-text {
     color: #464646;
-    margin-right: 40px;
+    margin-right: 140px;
     text-align: left;
     margin-top: 25px;
 }

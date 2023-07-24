@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Subject } from 'rxjs';
 
 
@@ -10,9 +10,11 @@ import { Subject } from 'rxjs';
 export class FinancialService {
 
   private url = 'http://127.0.0.1:4010/'
-  private transactionData: any;
-  private formDataSubject = new Subject<any>();
-  formData$ = this.formDataSubject.asObservable();
+  private dateChange = new BehaviorSubject<any>(Boolean);
+  private transactionData: any[] = [];  
+  private visableTransactions: any[] = [];  
+  private fromDate?: Date;
+  private toDate?: Date;
 
 
 
@@ -40,17 +42,40 @@ export class FinancialService {
     return this.http.post(this.url+"transaction/"+id+"/split", body);
   }
 
-  // Method to update and emit the transaction data
-  updateTransactionData(transactionData: any) {
-    this.transactionData = transactionData;
-  }
-
   // Method to get the transaction data as an observable
   getTransactionData() {
     return this.transactionData;
   }
+  public getDateChange(): Observable<any[]> {
+    return this.dateChange.asObservable();
+  }
 
-  sendFormData(formData: any) {
-    this.formDataSubject.next(formData);
+  public updateTransactionData(data: any[]) {
+    this.transactionData = data;
+  }
+
+  public getVisableTransactions(){
+    return this.visableTransactions;
+  }
+
+  public setVisableTransactions(data: any[]){
+    this.visableTransactions = data;
+  }
+
+  setFromDate(date: Date | undefined) {
+    this.fromDate = date;
+  }
+
+  getFromDate() {
+    return this.fromDate;
+  }
+
+  setToDate(date: Date | undefined) {
+    this.toDate = date;
+    this.dateChange.next(true);
+  }
+
+  getToDate() {
+    return this.toDate;
   }
 }

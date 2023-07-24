@@ -1,6 +1,9 @@
 .app{
     background-color: #c9c9c981;
     height: auto;
-    width: 100vw;
+    max-width: 100vw;
     min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }

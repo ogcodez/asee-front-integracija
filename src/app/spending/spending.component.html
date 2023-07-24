@@ -1,0 +1,54 @@
+<div class="main">
+    <div class="nav">
+        <app-navigation></app-navigation>
+    </div>
+    <div class="fOverview">
+        <mat-card class="main-card">
+            <mat-card-header class="header">
+                <img class="avatar"
+                    src="https://images.ctfassets.net/lh3zuq09vnm2/yBDals8aU8RWtb0xLnPkI/19b391bda8f43e16e64d40b55561e5cd/How_tracking_user_behavior_on_your_website_can_improve_customer_experience.png" />
+                <div class="avatar-text">
+                    <h1 class="text1">Current Account</h1>
+                    <h2 class="text2">0123456789</h2>
+                </div>
+                <div class="header-balance">
+                    <h1 class="text1">123,456.78 $</h1>
+                    <h2 class="text2">Available balance</h2>
+                </div>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div id="chart">
+                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                        [plotOptions]="chartOptions.plotOptions" [title]="chartOptions.title">
+                     </apx-chart>
+
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="subcat">
+            <mat-card-content *ngFor="let tran of showSub">
+                <mat-card class="transaction">
+                    <img *ngIf="tran.direction === 'c'; else elseBlock" src="../../assets/green.png" class="arrow" />
+                    <ng-template #elseBlock>
+                        <img src="../../assets/red.png" class="arrow" />
+                    </ng-template>
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+                        class="transaction-avatar" />
+                    <div class="transaction-text">
+                        <h1 class="transaction-name">{{tran.beneficiaryName}}</h1>
+                        <h2 class="transaction-date">{{tran.date}}</h2>
+                    </div>
+                    <h1 class="cat-name">{{tran.name}}</h1>
+                    <div class="transaction-balance">
+                        <h1 class="transaction-amount">{{tran.amount.replace('€','')
+                            + "
+                            " +
+                            tran.currency}} </h1>
+                    </div>
+                </mat-card>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

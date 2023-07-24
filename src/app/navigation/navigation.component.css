@@ -1,0 +1,80 @@
+.navigation{
+    position: fixed;
+    width: 320px;
+    height: auto;
+    margin-top: 120px;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 0;
+}
+.nav-item{
+    height: 35px;
+    width: 320px;
+    background-color: #B2E5FF;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+.nav-item:hover{
+    height: 40px;
+    cursor: pointer;
+}
+.nav-item:hover .nav-text{
+    color:#fff;
+}
+.nav-text{
+    font-size: 20px;
+    color: #464646;
+    margin-right: auto;
+}
+.strelica{
+    height: 30px;
+    width: auto;
+    margin-right: 10px;
+}
+.dividerText{
+    margin-top: 30px;
+    font-size: 20px;
+    color: #464646;
+}
+.divider{
+    height: 10px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    display:flex;
+}
+.dividerBold{
+    background-color: #B2E5FF;
+    height: 10px;
+    width: 180px;
+}
+.dividerLight{
+    background-color: #B2E5FF;
+    height: 3px;
+    width: 140px;  
+    margin-top: auto;
+}
+.date{
+    margin-top: 10px;
+    width: 320px;
+}
+.filter_b{
+    margin-top: 30px;
+    width: 120px;
+    background-color: #B2E5FF;
+}
+.reset{
+    margin-top: 10px;
+    text-decoration: underline;
+    color:#464646;
+    font-size: 15px;
+}
+.reset:hover{
+    cursor: pointer;
+}

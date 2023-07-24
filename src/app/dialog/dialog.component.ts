@@ -48,7 +48,6 @@ export class DialogComponent implements OnInit {
         this.getCategory(this.data.catcode);
       }
       this.onCategorySelected();
-      console.log(this.chosenCategory); // Now this should log the correct value.
     });
   }
 
