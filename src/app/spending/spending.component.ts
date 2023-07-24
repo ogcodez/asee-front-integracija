@@ -16,8 +16,6 @@ export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart & { events?: any };
   fill: ApexFill;
-  title: ApexTitleSubtitle;
-  plotOptions: ApexPlotOptions;
   legend: ApexLegend;
 };
 
@@ -62,6 +60,9 @@ export class SpendingComponent implements AfterViewInit {
     chart: {
       height: 350,
       type: "treemap",
+      toolbar: {
+        show:false
+      },
       events: {
         click: (event: any, chartContext: any, config: any) => {
           this.cat = config.globals.initialSeries[parseInt(config.seriesIndex)].name;
@@ -73,16 +74,6 @@ export class SpendingComponent implements AfterViewInit {
         }
       }
     },
-    title: {
-      text: "Potrosnja po kategoriji",
-      align: "center"
-    },
-    plotOptions: {
-      treemap: {
-        distributed: true,
-        enableShades: false
-      }
-    }
   };
 
   constructor(

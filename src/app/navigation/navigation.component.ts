@@ -21,15 +21,18 @@ export class NavigationComponent {
   filterData() {
     this.fService.setFromDate(this.dateForm.controls.fromDate.value!)
     this.fService.setToDate(this.dateForm.controls.toDate.value!)
-    let data = this.fService.getVisableTransactions().filter((obj:any)=>
+    let data = this.fService.getVisableTransactions().filter((obj: any) =>
       new Date(obj.date).getTime() >= this.fService.getFromDate()!.getTime() && new Date(obj.date).getTime() <= this.fService.getToDate()!.getTime()
     );
     this.fService.setVisableTransactions(data)
     this.resetTrans.emit();
   }
-  reset(){
+  reset() {
     this.fService.setFromDate(undefined)
     this.fService.setToDate(undefined)
+    this.fService.setVisableTransactions(
+      this.fService.getTransactionData()
+    );
     this.resetTrans.emit();
   }
 }

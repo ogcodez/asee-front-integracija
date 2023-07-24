@@ -18,11 +18,9 @@
             </mat-card-header>
 
             <mat-card-content>
-                <div id="chart">
-                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
-                        [plotOptions]="chartOptions.plotOptions" [title]="chartOptions.title">
+                <div id="chart" class="chart">
+                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart">
                      </apx-chart>
-
                 </div>
             </mat-card-content>
         </mat-card>
@@ -39,8 +37,8 @@
                         <h1 class="transaction-name">{{tran.beneficiaryName}}</h1>
                         <h2 class="transaction-date">{{tran.date}}</h2>
                     </div>
-                    <h1 class="cat-name">{{tran.name}}</h1>
                     <div class="transaction-balance">
+                        <h1 class="cat-name">{{tran.name}}</h1>
                         <h1 class="transaction-amount">{{tran.amount.replace('€','')
                             + "
                             " +
