@@ -10,7 +10,7 @@ import {
 import { ChartComponent } from "ng-apexcharts";
 import { FinancialService } from '../financial.service';
 import camelcaseKeys from 'camelcase-keys';
-import { Category } from '../dialog/dialog.component';
+import { Category } from '../category/category.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;

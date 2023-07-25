@@ -2,18 +2,25 @@
     <div class="nav">
         <app-navigation (resetTrans)="all()"></app-navigation>
     </div>
+    <button mat-button [matMenuTriggerFor]="menu" class="main_menu">Menu</button>
+    <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item routerLink="/">Financial Overview</button>
+        <button mat-menu-item routerLink="/spending">Spending by Category</button>
+    </mat-menu>
     <div class="fOverview">
         <mat-card class="main-card">
             <mat-card-header class="header">
                 <img class="avatar"
                     src="https://images.ctfassets.net/lh3zuq09vnm2/yBDals8aU8RWtb0xLnPkI/19b391bda8f43e16e64d40b55561e5cd/How_tracking_user_behavior_on_your_website_can_improve_customer_experience.png" />
-                <div class="avatar-text">
-                    <h1 class="text1">Current Account</h1>
-                    <h2 class="text2">0123456789</h2>
-                </div>
-                <div class="header-balance">
-                    <h1 class="text1">123,456.78 $</h1>
-                    <h2 class="text2">Available balance</h2>
+                <div class="h_info">
+                    <div class="avatar-text">
+                        <h1 class="text1">Current Account</h1>
+                        <h2 class="text2">0123456789</h2>
+                    </div>
+                    <div class="header-balance">
+                        <h1 class="text1">123,456.78 $</h1>
+                        <h2 class="text2">Available balance</h2>
+                    </div>
                 </div>
             </mat-card-header>
             <mat-card appearance="outlined" class="card-navigation">
@@ -37,7 +44,7 @@
                     </div>
                 </mat-card-content>
             </mat-card>
-            <mat-card-content>
+            <mat-card-content class="content">
                 <cdk-accordion>
                     <cdk-accordion-item *ngFor="let tran of visableTransactions; let i = index;"
                         #accordionItem="cdkAccordionItem" role="button" tabindex="0" [attr.id]="'accordion-header-' + i"
@@ -58,12 +65,32 @@
                             </div>
                             <button mat-flat-button class="category"
                                 (click)="changeCategory(multipleTransactions.size === 0 ? tran : multipleTransactions)">{{
-                                getCategory(tran.catcode) }}</button>
+                                getCategory(tran.catcode) }}
+                            </button>
                             <div class="transaction-balance">
-                                <h1 class="transaction-amount">{{tran.amount.replace('€','')
-                                    + "
-                                    " +
-                                    tran.currency}} </h1>
+                                <div class="tb">
+                                    <mat-icon *ngIf="tran.split.length >= 2" class="call_split">call_split</mat-icon>
+                                    <div class="tam">
+                                        <h1 class="transaction-amount">{{tran.amount.replace('€','')
+                                            + "
+                                            " +
+                                            tran.currency}} </h1>
+
+                                        <button mat-icon-button [matMenuTriggerFor]="menu" class="menu">
+                                            <mat-icon>more_vert</mat-icon>
+                                        </button>
+                                        <mat-menu #menu="matMenu">
+                                            <button mat-menu-item (click)="changeCategory(multipleTransactions.size === 0 ? tran : multipleTransactions)">
+                                                <mat-icon>inventory_2</mat-icon>
+                                                <span>Category</span>
+                                            </button>
+                                            <button mat-menu-item (click)="split(tran)">
+                                                <mat-icon>call_split</mat-icon>
+                                                <span>Split</span>
+                                            </button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
                                 <button mat-fab extended class="split" (click)="split(tran)">
                                     Split Transaction
                                 </button>
@@ -74,7 +101,7 @@
                             [attr.id]="'accordion-body-' + i" [attr.aria-labelledby]="'accordion-header-' + i"
                             *ngIf="tran.split.length >= 2">
                             <mat-card *ngFor="let sp of tran.split; let ind = index" class="transaction{{i%2}}">
-                                <mat-card-content>{{ind + ". Split ---" + sp.amount + " " +
+                                <mat-card-content class="transaction-amount">{{ind + ". Split --- " + sp.amount + " " +
                                     tran.currency + ' -- ' + getCategory(sp.catcode.toString())}}</mat-card-content>
                             </mat-card>
                         </div>

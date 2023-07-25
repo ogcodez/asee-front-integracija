@@ -15,15 +15,52 @@
 
 .main-card {
     width: 100%;
+    margin: auto;
     border-radius: 20px;
     background-color: #fff;
 }
+
+.tb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.call_split {
+    margin-right: 20px;
+
+}
+
+.h_info{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .subcat{
     background-color: #B2E5FF;
     border-radius: 20px;
     width: 100%;
-    
 }
+
+.cat-name{
+    color: #464646;
+    font-size: 18px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.transaction {
+    height: 140px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .header {
     height: 200px;
     background-image: url(https://theme.zdassets.com/theme_assets/1875401/1afdd0a5ce33be95381b6718972fc846b88ccf05.png);
@@ -66,22 +103,6 @@
     margin-top: 25px;
 }
 
-.cat-name{
-    color: #464646;
-    font-size: 18px;
-    margin-right: 20px;
-    margin-top: 10px;
-}
-
-.transaction {
-    height: 140px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
 .transaction-avatar {
     height: 60px;
     width: 60px;
@@ -109,20 +130,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-right: 50px;
 }
 
 .transaction-amount {
     font-size: 20px;
     margin-right: 10px;
+    margin-bottom: 0px;
 }
 
 .transaction-text {
     color: #464646;
-    margin-right: 140px;
+    margin-right: auto;
     text-align: left;
     margin-top: 25px;
-    margin-right: auto
 }
 
 .arrow {
@@ -131,66 +151,133 @@
     margin-left: 20px;
 }
 
-.split {
-    height: 35px !important;
-    margin-right: 50px;
-    background-color: #77C3EC;
+.main_menu{
+    display: none;
 }
 
-.chart{
-    margin-top: 50px;
-    margin-left: 50px;
-}
+@media screen and (max-width: 1020px) {
+    .main {
+        max-width: 100vw;
+        flex-direction: column;
+    }
 
-.category {
-    margin-right: auto;
-    background-color: #46464698 !important;
-    color: white !important;
-    min-width: 140px !important;
-    height: 35px !important;
-    border-radius: 10px;
-}
+    .main_menu{
+        display: flex;
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+    }
 
-.card-navigation {
-    background-color: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 20px;
-    height: 50px;
-}
+    .cat-name{
+        color: #464646;
+        font-size: 14px;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
 
-.chips {
-    margin-right: auto;
-}
+    .fOverview {
+        width: 100%;
+        margin-left: 0;
+        padding: 60px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .main-card{
+        width: 90vw;
+        margin: auto;
+    }
 
-.chip {
-    background-color: #B2E5FF !important;
-}
+    .h_info{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-.sort {
-    font-size: 20px;
-    margin: 0px 20px;
-}
+    .menu{
+        display:flex;
+        margin-left: -20px ;
+    }
 
-.sort-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
+    .transaction {
+        height: 90px;
+    }
 
-.chip1 {
-    background-color: #B2E5FF !important;
-    margin-left: 10px;
-}
+    .sort-div {
+        justify-content: flex-start;
+    }
 
-.card-nav-content {
-    display: flex;
-    flex-direction: row;
-}
+    .content {
+        margin-top: 60px;
+    }
 
-.split-menu-button {
-    font-size: 20px;
-    font-weight: 400;
-    margin: 10px 20px;
+    .avatar {
+        height: 80px;
+        width: 80px;
+        object-fit: contain;
+        border-radius: 40px;
+        margin-right: 20px;
+    }
+
+    .avatar-text {
+        color: #464646;
+        margin-right: auto;
+        text-align: left;
+        margin-top: 25px;
+    }
+
+    .text1 {
+        margin-bottom: 0;
+        font-size: 18px;
+        line-height: normal;
+    }
+
+    .text2 {
+        font-size: 14px;
+    }
+
+    .header-balance {
+        margin-right: 5px;
+    }
+
+    .arrow {
+        width: auto;
+        height: 10px;
+        margin-left: 5px;
+    }
+
+    .transaction-avatar {
+        height: 30px;
+        width: 30px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin: 10px 10px;
+        border: 2px solid #77C3EC;
+
+    }
+
+    .transaction-text {
+        margin-right: auto;
+        width: 33%
+    }
+
+    .transaction-name {
+        font-size: 14px;
+        line-height: normal;
+        margin-bottom: -10px;
+    }
+
+    .transaction-date {
+        font-size: 10px;
+        margin-top: 0px;
+        margin-left: 1px;
+        font-weight: lighter;
+    }
+
+    .transaction-amount {
+        font-size: 14px;
+        margin-top: -20px;
+    }
+
 }

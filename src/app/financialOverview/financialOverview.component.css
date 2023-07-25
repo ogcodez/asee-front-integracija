@@ -20,6 +20,25 @@
     background-color: #fff;
 }
 
+.tb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.call_split {
+    margin-right: 20px;
+
+}
+
+.h_info{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .header {
     height: 200px;
     background-image: url(https://theme.zdassets.com/theme_assets/1875401/1afdd0a5ce33be95381b6718972fc846b88ccf05.png);
@@ -96,6 +115,11 @@
     margin-bottom: -10px;
 }
 
+.ifSplit{
+    display: flex;
+    flex-direction: row;
+}
+
 .transaction-date {
     font-size: 14px;
     margin-top: 0px;
@@ -110,9 +134,15 @@
     justify-content: center;
 }
 
+.tam{
+    display: flex;
+    align-items: center;
+}
+
 .transaction-amount {
     font-size: 20px;
     margin-right: 10px;
+    margin-bottom: 0px;
 }
 
 .transaction-text {
@@ -185,4 +215,177 @@
     font-size: 20px;
     font-weight: 400;
     margin: 10px 20px;
+}
+
+.menu{
+    display: none;
+}
+
+.main_menu{
+    display: none;
+}
+
+@media screen and (max-width: 1020px) {
+    .main {
+        max-width: 100vw;
+        flex-direction: column;
+    }
+
+    .main_menu{
+        display: flex;
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+    }
+
+    .fOverview {
+        width: 100%;
+        margin-left: 0;
+        padding: 60px 0px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .main-card{
+        width: 90vw;
+        margin: auto;
+    }
+
+    .h_info{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-nav-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chips {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+
+    .chip{
+        transform: scale(0.9);
+    }
+
+    .chip1 {
+        transform: scale(0.8);
+    }
+
+    .menu{
+        display:flex;
+        margin-left: -20px ;
+    }
+    .sort-div {
+        justify-content: flex-start;
+    }
+
+    .content {
+        margin-top: 60px;
+    }
+
+    .avatar {
+        height: 80px;
+        width: 80px;
+        object-fit: contain;
+        border-radius: 40px;
+        margin-right: 20px;
+    }
+
+    .avatar-text {
+        color: #464646;
+        margin-right: auto;
+        text-align: left;
+        margin-top: 25px;
+    }
+
+    .text1 {
+        margin-bottom: 0;
+        font-size: 18px;
+        line-height: normal;
+    }
+
+    .text2 {
+        font-size: 14px;
+    }
+
+    .header-balance {
+        margin-right: 5px;
+    }
+
+    .transaction0 {
+        height: 90px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 5px;
+        background-color: #B2E5FF;
+    }
+
+    .transaction1 {
+        height: 90px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .arrow {
+        width: auto;
+        height: 10px;
+        margin-left: 5px;
+    }
+
+    .transaction-avatar {
+        height: 30px;
+        width: 30px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin: 10px 10px;
+        border: 2px solid #77C3EC;
+
+    }
+
+    .transaction-text {
+        margin-right: auto;
+        width: 33%
+    }
+
+    .transaction-name {
+        font-size: 14px;
+        line-height: normal;
+        margin-bottom: -10px;
+    }
+
+    .transaction-date {
+        font-size: 10px;
+        margin-top: 0px;
+        margin-left: 1px;
+        font-weight: lighter;
+    }
+
+    .category {
+        display: none
+    }
+
+    .transaction-amount {
+        font-size: 14px;
+    }
+
+    .split {
+        display: none;
+    }
+
+    .tb {
+        font-size: 12px;
+        margin-bottom: 5px;
+        flex-direction: column-reverse;
+    }
+
 }

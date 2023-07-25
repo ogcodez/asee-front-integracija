@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
+import { CategoryComponent } from './category/category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
@@ -34,7 +34,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
   declarations: [
     AppComponent,
     FinancialOverviewComponent,
-    DialogComponent,
+    CategoryComponent,
     SplitComponent,
     NavigationComponent,
     SpendingComponent,

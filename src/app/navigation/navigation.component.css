@@ -45,7 +45,7 @@
 }
 .divider{
     height: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     margin-top: 10px;
     display:flex;
 }
@@ -77,4 +77,10 @@
 }
 .reset:hover{
     cursor: pointer;
+}
+
+@media screen and (max-width: 1020px) {
+    .navigation{
+        display: none;
+    }
 }

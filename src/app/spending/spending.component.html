@@ -2,6 +2,11 @@
     <div class="nav">
         <app-navigation></app-navigation>
     </div>
+    <button mat-button [matMenuTriggerFor]="menu" class="main_menu">Menu</button>
+    <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item routerLink="/">Financial Overview</button>
+        <button mat-menu-item routerLink="/spending">Spending by Category</button>
+    </mat-menu>
     <div class="fOverview">
         <mat-card class="main-card">
             <mat-card-header class="header">

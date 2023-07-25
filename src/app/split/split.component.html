@@ -1,16 +1,21 @@
 <div class="dialog">
   <div class="dialog-header"> Choose Category </div>
-  <form class="form"  *ngFor="let split of splits let i = index">
+  <form class="form" *ngFor="let split of splits let i = index">
     <mat-form-field class="form-field" [formGroup]="splitForms[i]">
       <mat-label>Select a Category</mat-label>
-      <mat-select [(value)]="split.chosenCategory" formControlName="chosenCategory"  (selectionChange)="onCategorySelected(split)">
+      <mat-select [(value)]="split.chosenCategory" formControlName="chosenCategory"
+        (selectionChange)="onCategorySelected(split)">
         <mat-option [value]="undefined">None</mat-option>
         <mat-option *ngFor="let cat of mainCategory" [value]="cat">{{cat.name}}</mat-option>
       </mat-select>
     </mat-form-field>
+    <span class="error" *ngIf="splitForms[i].get('chosenCategory')?.hasError('notChosen')">
+      Choose a Category
+    </span>
     <mat-form-field class="form-field">
       <mat-label>Select a Subcategory</mat-label>
-      <mat-select [(value)]="split.chosenSubCategory" [disabled]="!split.chosenCategory || split.chosenCategory.name === ''">
+      <mat-select [(value)]="split.chosenSubCategory"
+        [disabled]="!split.chosenCategory || split.chosenCategory.name === ''">
         <mat-option *ngFor="let subcat of split.subCategory" [value]="subcat">{{subcat.name}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -19,6 +24,9 @@
       <input matInput [(ngModel)]="split.amount" formControlName="amount" name="amount">
       <mat-icon matSuffix>payments</mat-icon>
     </mat-form-field>
+    <span class="error" *ngIf="splitForms[i].get('amount')?.hasError('notEqual')">
+      Sum of amounts is not equal to Total
+    </span>
     <div class="split-text" *ngIf="i + 1 === splits.length">
       Add category
       <button mat-icon-button color="accent" (click)="addSplit()">

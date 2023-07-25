@@ -4,7 +4,7 @@ import { FinancialService } from '../financial.service';
 import camelcaseKeys from 'camelcase-keys';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Category } from '../dialog/dialog.component';
+import { Category } from '../category/category.component';
 
 @Component({
   selector: 'app-split',
@@ -135,10 +135,9 @@ export class SplitComponent {
     } else if (!bol) {
       this._snackBar.open('Choose categories for split amounts', 'okay');
       this.splitForms.forEach((formGroup) => {
-        Object.keys(formGroup.controls).forEach((key) => {
-          const control = formGroup.get(key);
+          const control = formGroup.get('chosenCategory');
+          control?.setErrors({ notChosen: true });
           control?.markAsTouched();
-        });
       });
     } else {
       this._snackBar.open('Sum of split amounts is not equal to the total amount', 'okay');

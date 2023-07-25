@@ -1,11 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 import { FinancialService } from '../financial.service';
 import camelcaseKeys from 'camelcase-keys';
-import { DialogComponent } from '../dialog/dialog.component';
+import { CategoryComponent } from '../category/category.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SplitComponent } from '../split/split.component';
 import { MatExpansionPanel } from '@angular/material/expansion';
-import { Subscription } from 'rxjs';
 
 
 
@@ -148,8 +147,7 @@ export class FinancialOverviewComponent implements OnInit {
 
   // Open window for choosing / changing transaction category
   public changeCategory(tran: any) {
-    tran.splitBol = false;
-    this.dialog.open(DialogComponent, {
+    this.dialog.open(CategoryComponent, {
       width: '550px',
       height: 'auto',
       data: tran
@@ -158,7 +156,6 @@ export class FinancialOverviewComponent implements OnInit {
 
   // Open window for spliting transaction
   public split(tran: any) {
-    tran.splitBol = true;
     this.dialog.open(SplitComponent, {
       width: '550px',
       height: 'auto',

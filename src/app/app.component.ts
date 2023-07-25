@@ -23,7 +23,6 @@ ngOnInit(){
         ...obj,
         checked: false,
         catcode: '',
-        splitBol: false,
         split: [{
           amount: '',
           catcode: ''

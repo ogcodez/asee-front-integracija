@@ -10,11 +10,11 @@ export interface Category {
 }
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css'],
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css'],
 })
-export class DialogComponent implements OnInit {
+export class CategoryComponent implements OnInit {
   public category: Category[] = [];
   public mainCategory: Category[] = [];
   public subCategory: Category[] = [];
@@ -23,7 +23,7 @@ export class DialogComponent implements OnInit {
   public splits = 2;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogComponent>,
+    public dialogRef: MatDialogRef<CategoryComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public fService: FinancialService
   ) { }
