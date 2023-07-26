@@ -45,36 +45,20 @@ export class FinancialOverviewComponent implements OnInit {
 
   // Show all transactions
   public all() {
-    if (this.fService.getFromDate()?.getTime() != undefined && this.fService.getToDate()?.getTime() != undefined) {
-      this.visableTransactions = this.fService.getVisableTransactions().filter((obj: any) => {
-        return new Date(obj.date).getTime() >= this.fService.getFromDate()!.getTime() && new Date(obj.date).getTime() <= this.fService.getToDate()!.getTime();
-      });
-    } else {
-      this.visableTransactions = this.fService.getVisableTransactions();
-    }
-    
+      this.visableTransactions = this.fService.getVisableTransactions(); 
   }
 
   // Show deposit transactions
   public incoming() {
     this.visableTransactions = this.fService.getVisableTransactions().filter((obj: any) => {
-      if (this.fService.getFromDate()?.getTime() != undefined && this.fService.getToDate()?.getTime() != undefined) {
-        return obj.kind === "dep" && new Date(obj.date).getTime() >= this.fService.getFromDate()!.getTime() && new Date(obj.date).getTime() <= this.fService.getToDate()!.getTime();
-      }
-      else {
         return obj.kind === "dep"
-      }
     });
   }
 
   // Show payment transactions
   public outgoing() {
     this.visableTransactions = this.fService.getVisableTransactions().filter((obj: any) => {
-      if (this.fService.getFromDate()?.getTime() != undefined && this.fService.getToDate()?.getTime() != undefined) {
-        return obj.kind === "pmt" && new Date(obj.date).getTime() >= this.fService.getFromDate()!.getTime() && new Date(obj.date).getTime() <= this.fService.getToDate()!.getTime();
-      } else {
         return obj.kind === "pmt"
-      }
     });
   }
 

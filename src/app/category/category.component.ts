@@ -42,7 +42,7 @@ export class CategoryComponent implements OnInit {
           this.mainCategory.push(obj);
         }
       }));
-      if (this.data.size >= 1 && this.data[0].catcode) {
+      if (this.data.size >= 1 && this.data[0]?.catcode) {
         this.getCategory(this.data[0].catcode);
       } else if (this.data.catcode) {
         this.getCategory(this.data.catcode);

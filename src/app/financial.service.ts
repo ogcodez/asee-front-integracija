@@ -66,20 +66,20 @@ export class FinancialService {
     this.visableTransactions = data;
   }
 
-  setFromDate(date: Date | undefined) {
-    this.fromDate = date;
+  formatDateToUrl(date: Date): string {
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month is 0-indexed, so we add 1 to get the correct month number
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 
-  getFromDate() {
-    return this.fromDate;
-  }
-
-  setToDate(date: Date | undefined) {
-    this.toDate = date;
-    this.dateChange.next(true);
-  }
-
-  getToDate() {
-    return this.toDate;
+  public filterDate(startDate: Date, endDate: Date): Observable<any>{
+    const formattedStartDate = this.formatDateToUrl(startDate);
+    const formattedEndDate = this.formatDateToUrl(endDate);
+    const encodedStartDate = encodeURIComponent(formattedStartDate!);
+    const encodedEndDate = encodeURIComponent(formattedEndDate!);
+    return this.http.get(this.url + `transactions?start-date=${encodedStartDate}&end-date=${encodedEndDate}`);
   }
 }
+
+

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FinancialService } from '../financial.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FinancialOverviewComponent } from '../financialOverview/financialOverview.component';
+import camelcaseKeys from 'camelcase-keys';
 
 @Component({
   selector: 'app-navigation',
@@ -19,17 +20,17 @@ export class NavigationComponent {
     private fService: FinancialService,
   ) { }
   filterData() {
-    this.fService.setFromDate(this.dateForm.controls.fromDate.value!)
-    this.fService.setToDate(this.dateForm.controls.toDate.value!)
-    let data = this.fService.getVisableTransactions().filter((obj: any) =>
-      new Date(obj.date).getTime() >= this.fService.getFromDate()!.getTime() && new Date(obj.date).getTime() <= this.fService.getToDate()!.getTime()
+    let startDate = this.dateForm.controls.fromDate.value!
+    let endDate = this.dateForm.controls.toDate.value!
+    this.fService.filterDate(startDate, endDate).subscribe((obj) => {
+      this.fService.setVisableTransactions(camelcaseKeys(obj.items))
+      this.resetTrans.emit();
+    }
+
     );
-    this.fService.setVisableTransactions(data)
-    this.resetTrans.emit();
+
   }
   reset() {
-    this.fService.setFromDate(undefined)
-    this.fService.setToDate(undefined)
     this.fService.setVisableTransactions(
       this.fService.getTransactionData()
     );

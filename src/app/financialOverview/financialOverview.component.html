@@ -61,7 +61,7 @@
                                 class="transaction-avatar" />
                             <div class="transaction-text">
                                 <h1 class="transaction-name">{{tran.beneficiaryName}}</h1>
-                                <h2 class="transaction-date">{{tran.date}}</h2>
+                                <h2 class="transaction-date">{{tran.date | date: 'mediumDate'}}</h2>
                             </div>
                             <button mat-flat-button class="category"
                                 (click)="changeCategory(multipleTransactions.size === 0 ? tran : multipleTransactions)">{{
