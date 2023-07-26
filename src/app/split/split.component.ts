@@ -77,7 +77,6 @@ export class SplitComponent {
     } else {
       split.chosenSubCategory = undefined;
     }
-    console.log(split.subCategory)
   }
 
   // Add a split window
@@ -103,7 +102,6 @@ export class SplitComponent {
   public onSubmit() {
     let transaction = this.data;
     let total: number = 0; // Initialize total to 0
-    transaction.amount = transaction.amount.replace('€', '');
     let bol = true;
 
     this.splits.forEach((split) => {
@@ -114,12 +112,12 @@ export class SplitComponent {
     });
 
     if (parseFloat(transaction.amount) === total && bol) {
-      transaction.split = this.splits.map(({ amount, chosenCategory, chosenSubCategory }) => {
-        const split = {
+      transaction.splits = this.splits.map(({ amount, chosenCategory, chosenSubCategory }) => {
+        const splits = {
           amount,
           catcode: chosenSubCategory ? chosenSubCategory.code : chosenCategory ? chosenCategory.code : null,
         };
-        return split;
+        return splits;
       });
 
       let newTran = this.fService.getTransactionData().map((obj: any) => {
@@ -131,6 +129,10 @@ export class SplitComponent {
       });
 
       this.fService.updateTransactionData(newTran);
+      this.fService.setVisableTransactions(newTran);
+      this.fService.splitTransaction(transaction.id,transaction).subscribe((res)=>{
+        console.log(res)
+      })
       this.dialogRef.close();
     } else if (!bol) {
       this._snackBar.open('Choose categories for split amounts', 'okay');

@@ -93,19 +93,19 @@ export class SpendingComponent implements AfterViewInit {
             this.subCategories?.push({
               ...item,
               name: this.getCategory(item.catcode),
-              amount: parseFloat(item.amount.replace('€', '')).toFixed(2),
+              amount: parseFloat(item.amount).toFixed(2),
               parent: parentcat?.name
             })
             if (!Array.from(this.sortedTran).some((obj: any) => obj.name === parentcat?.name)) {
               this.sortedTran.add({
                 name: parentcat?.name,
-                amount: parseFloat(item.amount.replace('€', ''))
+                amount: parseFloat(item.amount)
               })
             } else {
               const myArray = Array.from(this.sortedTran);
               myArray.forEach((obj: any) => {
                 if (obj.name === parentcat?.name) {
-                  obj.amount += parseFloat(item.amount.replace('€', ''))
+                  obj.amount += parseFloat(item.amount)
                 }
               });
               this.sortedTran.clear();
@@ -116,20 +116,20 @@ export class SpendingComponent implements AfterViewInit {
             this.subCategories?.push({
               ...item,
               name: this.getCategory(item.catcode),
-              amount: parseFloat(item.amount.replace('€', '')).toFixed(2),
+              amount: parseFloat(item.amount).toFixed(2),
               parent: cat?.name
             })
             if (!Array.from(this.sortedTran).some((obj: any) => obj.name === cat?.name)) {
               this.sortedTran.add({
                 name: cat?.name,
-                amount: parseFloat(item.amount.replace('€', ''))
+                amount: parseFloat(item.amount)
               })
             }
             else {
               const myArray = Array.from(this.sortedTran);
               myArray.forEach((obj: any) => {
                 if (obj.name === cat?.name) {
-                  obj.amount += parseFloat(item.amount.replace('€', ''))
+                  obj.amount += parseFloat(item.amount)
                 }
               });
               this.sortedTran.clear();

@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 })
 export class FinancialService {
 
-  private url = 'http://127.0.0.1:4010/'
+  private url = 'http://localhost:5161/'
   private dateChange = new BehaviorSubject<any>(Boolean);
   private transactionData: any[] = [];  
   private visableTransactions: any[] = [];  
@@ -21,6 +21,10 @@ export class FinancialService {
   constructor(
     private http: HttpClient
   ) { }
+
+  public getSpending(catcode: any){
+    return this.http.get(this.url)
+  }
 
   // Fetch all transactions
   public getTransactions(): Observable<any> {
@@ -34,12 +38,12 @@ export class FinancialService {
 
   // Set a category for specific transaction
   public setCategory(id: any, body: any): Observable<any> {
-    return this.http.post(this.url+"transaction/"+id+"/categorize", body);
+    return this.http.post(this.url+"transactions/"+id+"categorize", body);
   }
 
   // Split a transaction
   public splitTransaction(id: any, body: any): Observable<any>  {
-    return this.http.post(this.url+"transaction/"+id+"/split", body);
+    return this.http.post(this.url+"transactions/"+id+"/split", body);
   }
 
   // Method to get the transaction data as an observable

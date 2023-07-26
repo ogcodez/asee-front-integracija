@@ -69,9 +69,9 @@
                             </button>
                             <div class="transaction-balance">
                                 <div class="tb">
-                                    <mat-icon *ngIf="tran.split.length >= 2" class="call_split">call_split</mat-icon>
+                                    <mat-icon *ngIf="tran.splits.length >= 2" class="call_split">call_split</mat-icon>
                                     <div class="tam">
-                                        <h1 class="transaction-amount">{{tran.amount.replace('€','')
+                                        <h1 class="transaction-amount">{{tran.amount
                                             + "
                                             " +
                                             tran.currency}} </h1>
@@ -99,8 +99,8 @@
 
                         <div role="region" [style.display]="accordionItem.expanded ? '' : 'none'"
                             [attr.id]="'accordion-body-' + i" [attr.aria-labelledby]="'accordion-header-' + i"
-                            *ngIf="tran.split.length >= 2">
-                            <mat-card *ngFor="let sp of tran.split; let ind = index" class="transaction{{i%2}}">
+                            *ngIf="tran.splits.length >= 2">
+                            <mat-card *ngFor="let sp of tran.splits; let ind = index" class="transaction{{i%2}}">
                                 <mat-card-content class="transaction-amount">{{ind + ". Split --- " + sp.amount + " " +
                                     tran.currency + ' -- ' + getCategory(sp.catcode.toString())}}</mat-card-content>
                             </mat-card>

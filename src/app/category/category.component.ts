@@ -97,7 +97,7 @@ export class CategoryComponent implements OnInit {
       })
     } else {
       transaction = this.data;
-      transaction.catcode = this.chosenSubCategory ? this.chosenSubCategory.code.toString() : this.chosenCategory?.code;
+      transaction.catcode = this.chosenSubCategory ? this.chosenSubCategory.code.toString() : this.chosenCategory?.code.toString();
       this.fService.setCategory(transaction.id, transaction).subscribe((res) => {
         console.log(res)
       });

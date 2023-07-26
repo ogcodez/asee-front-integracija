@@ -19,17 +19,10 @@ ngOnInit(){
 }
   public fetch() {
     this.fService.getTransactions().subscribe((object) => {
-      this.transactions = camelcaseKeys(object.items.map((obj: any) => ({
-        ...obj,
-        checked: false,
-        catcode: '',
-        split: [{
-          amount: '',
-          catcode: ''
-        }]
-      })));
+      this.transactions = camelcaseKeys(object.items);
       this.fService.updateTransactionData(this.transactions);
       this.fService.setVisableTransactions(this.transactions)
+      console.log(this.transactions)
     });
   }
 }
